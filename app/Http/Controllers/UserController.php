@@ -22,21 +22,6 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $newUser = new CreateNewUser();
-
-        $user = $newUser->create($request->all());
-
-        return response()->json($user);
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -45,7 +30,7 @@ class UserController extends Controller
     public function show($email)
     {
         $user = User::whereEmail($email)->first();
-        
+
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
@@ -55,29 +40,12 @@ class UserController extends Controller
 
     public function me()
     {
-        return new UserResource(Auth::user());
-    }
+        $user = Auth::user();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return new UserResource($user);
     }
 }

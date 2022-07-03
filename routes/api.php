@@ -4,17 +4,12 @@ use Illuminate\Support\Facades\Route;
 
 // Users API Routes
 Route::group(['middleware' => 'auth:sanctum'], function () {
-
-    Route::group(['prefix' => '/users'], function () {
-        Route::get('/', 'UserController@index')
-            ->name('users.index')
-            ->withoutMiddleware('auth:sanctum')
-        ;
-
-        Route::get('/{email}', 'UserController@show')->name('users.show');
+    Route::group(['prefix' => '/users', 'name' => 'users.'], function () {
+        Route::get('/', 'UserController@index')->name('index');
+        Route::get('/{email}', 'UserController@show')->name('show');
     });
 
-    Route::get('/me', 'UserController@me')->name('users.me');
+    Route::get('/me', 'UserController@me')->name('me');
 });
 
 
