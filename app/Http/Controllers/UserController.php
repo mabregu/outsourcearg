@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Laravel\Fortify\Fortify;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use App\Actions\Fortify\CreateNewUser;
@@ -17,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return response()->json(User::latest()->get());
+        return UserResource::collection(User::all());
     }
 
     /**
@@ -43,7 +44,13 @@ class UserController extends Controller
      */
     public function show($email)
     {
-        return response()->json(User::whereEmail($email)->first());
+        $user = User::whereEmail($email)->first();
+        
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        return new UserResource($user);
     }
 
     public function me()
@@ -72,10 +79,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function onlyAuthenticate()
-    {
-        return response()->json(auth()->user());
     }
 }

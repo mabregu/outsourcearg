@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'birthday',
+        'gender_id'
     ];
 
     /**
@@ -45,5 +47,15 @@ class User extends Authenticatable
     public function getRouteKeyName()
     {
         return 'email';
+    }
+
+    public function getBirthdayAttribute($value)
+    {
+        return $value ? \Carbon\Carbon::parse($value)->format('d/m/Y') : null;
+    }
+
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class)->select('name');
     }
 }
