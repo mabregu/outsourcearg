@@ -17,10 +17,10 @@ return [
 
     'paths' => [
         'api/*', 
-        'sanctum/csrf-cookie',
         'login',
         'logout',
         'register',
+        'sanctum/csrf-cookie',
         'password/email',
         'password/reset',
         'password/update',
