@@ -25,11 +25,67 @@
                 margin-top: 60px;
             }
 
+            .routes {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin-top: 60px;
+            }
+
         </style>
     </head>
     <body>
         <div class="container">
             <h1>API</h1>
+            <div class="routes">
+                <table border="1" cellpadding="10" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Endpoint</th>
+                            <th>HTTP</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/api/register</code></td>
+                            <td>POST</td>
+                            <td>User register</td>
+                        </tr>
+                        <tr>
+                            <td><code>/api/login</code></td>
+                            <td>POST</td>
+                            <td>User login</td>
+                        </tr>
+                        <tr>
+                            <td><code>/api/logout</code></td>
+                            <td>POST</td>
+                            <td>User logout</td>
+                        </tr>
+                        <tr>
+                            <td><code>/api/me</code></td>
+                            <td>GET</td>
+                            <td>Get logged in user</td>
+                        </tr>
+                        <tr>
+                            <td><code>/api/user/profile-information</code></td>
+                            <td>PUT</td>
+                            <td>Update a existing user</td>
+                        </tr>
+                        <tr>
+                            <td><code>/api/users</code></td>
+                            <td>GET</td>
+                            <td>Retrieve all users</td>
+                        </tr>
+                        <tr>
+                            <td><code>/api/users/:email</code></td>
+                            <td>GET</td>
+                            <td>Retrieve a specific user with <code>email</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </body>
 </html>
