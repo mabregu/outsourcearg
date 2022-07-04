@@ -5,12 +5,15 @@
 
 ```composer install```
 
+```cp .env.example .env```
+
+```php artisan key:generate```
+
 ```php artisan migrate:fresh --seed```
 
 ### Test user
     
 ```"email": "test@example.com" , "password": "password"```
-
 
 ### Users routes
 
